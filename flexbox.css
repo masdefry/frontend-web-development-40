@@ -1,0 +1,19 @@
+#wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: gray;
+    height: 50vh;
+    gap: 10px;
+}
+
+#wrapper > div{
+    background-color: bisque;
+    width: 150px;
+    height: 150px;
+}
+
+#wrapper > div:nth-child(2){
+    background-color: tomato;
+}
