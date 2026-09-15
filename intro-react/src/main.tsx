@@ -6,6 +6,7 @@ import ProductsPage from './pages/products/index.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import LoginPage from './pages/login/index.tsx';
 import UserefPage from './pages/useref/index.tsx';
+import UsestatePage from './pages/usestate/page.tsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: '/use-ref',
     element: <UserefPage />,
+  },
+  {
+    path: '/use-state',
+    element: <UsestatePage />,
   },
 ]);
 
