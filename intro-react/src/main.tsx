@@ -5,6 +5,7 @@ import ProfilePage from './pages/profile';
 import ProductsPage from './pages/products/index.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import LoginPage from './pages/login/index.tsx';
+import UserefPage from './pages/useref/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -20,9 +21,13 @@ const router = createBrowserRouter([
     element: <ProductsPage />,
   },
   {
-    path: '/login', 
-    element: <LoginPage />
-  }
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/use-ref',
+    element: <UserefPage />,
+  },
 ]);
 
 createRoot(document.getElementById('root')!).render(
