@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @plugin "daisyui";
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @theme {
   --color-primary-950: #000000;
@@ -15,15 +16,18 @@
   --color-primary-50: #c0c2df;
   --color-primary-0: #d5d5d5;
   --color-secondary-950: #000000;
-  --color-secondary-900: #003D2A;
-  --color-secondary-800: #004E35;
-  --color-secondary-700: #005D40;
-  --color-secondary-600: #08764F;
-  --color-secondary-500: #10B981; /* Main brand */
-  --color-secondary-400: #31BE8C;
-  --color-secondary-300: #57CD9A;
-  --color-secondary-200: #6DDBA7;
-  --color-secondary-100: #A2D8B8;
-  --color-secondary-50:  #D5D5D5;
-  
+  --color-secondary-900: #003d2a;
+  --color-secondary-800: #004e35;
+  --color-secondary-700: #005d40;
+  --color-secondary-600: #08764f;
+  --color-secondary-500: #10b981; /* Main brand */
+  --color-secondary-400: #31be8c;
+  --color-secondary-300: #57cd9a;
+  --color-secondary-200: #6ddba7;
+  --color-secondary-100: #a2d8b8;
+  --color-secondary-50: #d5d5d5;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
