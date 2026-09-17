@@ -5,23 +5,29 @@ import ProfilePage from './pages/profile';
 import ProductsPage from './pages/products/index.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import LoginPage from './pages/login/index.tsx';
+import RootLayout from './layout.tsx';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/profile',
-    element: <ProfilePage />,
-  },
-  {
-    path: '/products',
-    element: <ProductsPage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
+    element: <RootLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/profile',
+        element: <ProfilePage />,
+      },
+      {
+        path: '/products',
+        element: <ProductsPage />,
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
+      },
+    ],
   },
 ]);
 

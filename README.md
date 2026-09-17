@@ -30,7 +30,7 @@ Instalasi Dependencies
 
     ▪️ React Router DOM
 
-                npm i react-router-dom@latest
+                npm i react-router@latest
 
     ▪️ React Icons
 
