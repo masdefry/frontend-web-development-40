@@ -6,6 +6,7 @@ import ProductsPage from './pages/products/index.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import LoginPage from './pages/login/index.tsx';
 import RootLayout from './layout.tsx';
+import BooksPage from './pages/books/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         path: '/login',
         element: <LoginPage />,
       },
+      {
+        path: '/books', 
+        element: <BooksPage />
+      }
     ],
   },
 ]);
