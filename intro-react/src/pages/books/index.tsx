@@ -23,10 +23,7 @@ export default function BooksPage() {
         );
         setBooks(res?.data);
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          console.log(error?.message);
-          toast.error(error?.message);
-        }
+        if (error instanceof Error) toast.error(error?.message);
       } finally {
         setGetBooksLoading(false);
       }

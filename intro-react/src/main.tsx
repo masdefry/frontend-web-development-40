@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import LoginPage from './pages/login/index.tsx';
 import RootLayout from './layout.tsx';
 import BooksPage from './pages/books/index.tsx';
+import RegisterPage from './pages/register/index.tsx';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/books', 
         element: <BooksPage />
+      },
+      {
+        path: '/register', 
+        element: <RegisterPage />
       }
     ],
   },
