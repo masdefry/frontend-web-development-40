@@ -61,8 +61,6 @@ export default function Sidebar() {
             );
           })}
         </nav>
-
-        <h1 className='absolute bottom-0'>Test</h1>
       </div>
     </>
   );

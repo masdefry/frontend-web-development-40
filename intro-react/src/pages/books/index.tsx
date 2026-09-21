@@ -19,12 +19,14 @@ export default function BooksPage() {
     const getBooks = async () => {
       try {
         const res = await axios.get(
-          'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/data/Booksss',
+          'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/data/Books',
         );
         setBooks(res?.data);
-      } catch (error: any) {
-        console.log(error?.message); 
-        toast.error(error?.message)
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.log(error?.message);
+          toast.error(error?.message);
+        }
       } finally {
         setGetBooksLoading(false);
       }
