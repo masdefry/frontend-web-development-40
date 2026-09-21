@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 interface Book {
   objectId: string;
@@ -34,7 +34,6 @@ export default function BooksPage() {
 
   return (
     <>
-      {console.log('Render')}
       <h1>Books Management</h1>
       {getBooksLoading ? (
         <span className='loading loading-spinner loading-xl'></span>
@@ -47,7 +46,6 @@ export default function BooksPage() {
           </div>
         ))
       )}
-      <ToastContainer />
     </>
   );
 }

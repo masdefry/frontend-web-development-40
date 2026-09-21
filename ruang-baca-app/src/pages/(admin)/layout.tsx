@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
 import Sidebar from '../../components/(admin)/Sidebar';
+import { ToastContainer } from 'react-toastify';
 
 export default function AdminLayout() {
   return (
@@ -10,6 +11,7 @@ export default function AdminLayout() {
           <Outlet />
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
