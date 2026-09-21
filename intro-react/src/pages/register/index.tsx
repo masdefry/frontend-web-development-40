@@ -1,20 +1,36 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form"
-import { registerSchema } from "../../features/register/validation/registerSchema";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import {
+  registerSchema,
+  type RegisterRequest,
+} from '../../features/register/validation/registerSchema';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function RegisterPage() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<any>({
-    resolver: zodResolver(registerSchema)
+  } = useForm<RegisterRequest>({
+    resolver: zodResolver(registerSchema),
   });
 
-  const handleRegister = (data) => {
-    console.log(data); 
-  }
+  const handleRegister = async (data: RegisterRequest) => {
+    try {
+      const res = await axios.post(
+        'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/users/register',
+        data
+      );
+      console.log(res)
+      toast.success('Register successful');
+    } catch (error: unknown) {
+      console.log(error);
+      if(error instanceof Error){
+        toast.error(error?.response?.data?.message)
+      }
+    }
+  };
 
   return (
     <>
@@ -35,7 +51,7 @@ export default function RegisterPage() {
               placeholder='Type your email'
               {...register('email')}
             />
-            <p className='label text-red-500'>{errors?.email?.message}</p>
+            <p className=' text-red-500'>{errors?.email?.message}</p>
           </fieldset>
           <fieldset className='fieldset w-full'>
             <legend className='fieldset-legend'>Username</legend>
@@ -45,7 +61,7 @@ export default function RegisterPage() {
               placeholder='Type your username'
               {...register('username')}
             />
-            <p className='label'>{errors?.username?.message}</p>
+            <p className='text-red-500'>{errors?.username?.message}</p>
           </fieldset>
           <fieldset className='fieldset w-full'>
             <legend className='fieldset-legend'>Password</legend>
@@ -55,9 +71,11 @@ export default function RegisterPage() {
               placeholder='Type your password'
               {...register('password')}
             />
-            <p className='label'>{errors?.password?.message}</p>
+            <p className='text-red-500 line-clamp-2'>
+              {errors?.password?.message}
+            </p>
           </fieldset>
-          <button className='btn btn-success mt-3 w-full'>Register</button>
+          <button className='btn btn-success mt-10 w-full'>Register</button>
         </form>
       </div>
     </>
