@@ -16,18 +16,29 @@ export default function CreateBook() {
     resolver: zodResolver(createBookSchema),
   });
 
-  const handleCreateBook = async ({title, isbn, author, imageUrl}: CreateBookRequest) => {
+  const handleCreateBook = async ({
+    title,
+    isbn,
+    author,
+    imageUrl,
+  }: CreateBookRequest) => {
     try {
+      console.log({
+        title,
+        isbn,
+        author,
+        imageUrl,
+      });
       await axios.post(
         'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/data/Books',
-        {title, isbn, author, imageUrl},
+        { title, isbn, author, imageUrl },
       );
 
-      toast.success('Create new book successful')
+      toast.success('Create new book successful');
     } catch (error) {
-        if (isAxiosError(error)){
-            toast.error(error?.response?.data?.message)
-        }
+      if (isAxiosError(error)) {
+        toast.error(error?.response?.data?.message);
+      }
     }
   };
 
@@ -110,14 +121,17 @@ export default function CreateBook() {
               />
               <p className='label'>{errors?.imageUrl?.message}</p>
             </fieldset>
-            <div className='flex justify-end mt-5'>
-              <button type='submit' className='btn btn-primary'>
-                Save as New Book
-              </button>
-            </div>
+            <div className='flex justify-end mt-5'></div>
+            <button type='submit' className='btn btn-primary'>
+              Save as New Book
+            </button>
           </form>
         </div>
       </div>
     </>
   );
 }
+
+// 1. Layouting
+// 2. Setup useForm (includes setup register input)
+// 3. Create validation schema at features/resources/validation/...Schema.ts
