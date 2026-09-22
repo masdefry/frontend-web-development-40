@@ -3,8 +3,8 @@ import { MdOutlineLibraryBooks } from 'react-icons/md';
 import { useGetBooks } from '../../../features/books-management/hooks/useGetBooks';
 import { useDeleteBook } from '../../../features/create-book/hooks/useDeleteBook';
 export default function BooksManagementPage() {
-  const { books } = useGetBooks();
-  const { handleDeleteBook } = useDeleteBook();
+  const { books, getBooks } = useGetBooks();
+  const { handleDeleteBook } = useDeleteBook(getBooks);
 
   return (
     <>

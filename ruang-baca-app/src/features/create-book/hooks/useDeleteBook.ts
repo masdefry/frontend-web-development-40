@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useGetBooks } from '../../books-management/hooks/useGetBooks';
 
-export function useDeleteBook() {
-  const { getBooks } = useGetBooks();
+export function useDeleteBook(getBooks: () => Promise<void>) {
 
   const handleDeleteBook = async (objectId: string) => {
+    console.log(objectId);
     try {
       await axios.delete(
         `https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/data/Books/${objectId}`,
@@ -19,6 +18,6 @@ export function useDeleteBook() {
   };
 
   return {
-    handleDeleteBook,
-  };
+    handleDeleteBook
+  }
 }
