@@ -2,6 +2,7 @@ import { IoAddOutline } from 'react-icons/io5';
 import { MdOutlineLibraryBooks } from 'react-icons/md';
 import { useGetBooks } from '../../../features/books-management/hooks/useGetBooks';
 import { useDeleteBook } from '../../../features/create-book/hooks/useDeleteBook';
+import { Link } from 'react-router';
 export default function BooksManagementPage() {
   const { books, getBooks } = useGetBooks();
   const { handleDeleteBook } = useDeleteBook(getBooks);
@@ -52,9 +53,9 @@ export default function BooksManagementPage() {
                     <td>{item?.author}</td>
                     <td>
                       <div className='flex gap-3'>
-                        <button className='btn btn-xs btn-success text-white'>
+                        <Link to={`/admin/books-management/update/${item?.objectId}`} className='btn btn-xs btn-success text-white'>
                           Update
-                        </button>
+                        </Link>
                         <button
                           onClick={() => handleDeleteBook(item?.objectId)}
                           className='btn btn-xs btn-error text-white'

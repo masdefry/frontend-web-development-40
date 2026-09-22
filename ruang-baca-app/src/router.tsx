@@ -2,6 +2,7 @@ import AdminLayout from './pages/(admin)/layout.tsx';
 import BooksManagementPage from './pages/(admin)/books/index.tsx';
 import { createBrowserRouter } from 'react-router';
 import CreateBook from './pages/(admin)/books/create/index.tsx';
+import UpdateBook from './pages/(admin)/books/update/index.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -14,8 +15,12 @@ export const router = createBrowserRouter([
       },
       {
         element: <CreateBook />,
-        path: 'books-management/create'
-      }
+        path: 'books-management/create',
+      },
+      {
+        element: <UpdateBook />,
+        path: 'books-management/update/:objectId',
+      },
     ],
   },
 ]);
