@@ -1,8 +1,10 @@
 import { IoAddOutline } from 'react-icons/io5';
 import { MdOutlineLibraryBooks } from 'react-icons/md';
 import { useGetBooks } from '../../../features/books-management/hooks/useGetBooks';
+import { useDeleteBook } from '../../../features/create-book/hooks/useDeleteBook';
 export default function BooksManagementPage() {
   const { books } = useGetBooks();
+  const { handleDeleteBook } = useDeleteBook();
 
   return (
     <>
@@ -53,7 +55,10 @@ export default function BooksManagementPage() {
                         <button className='btn btn-xs btn-success text-white'>
                           Update
                         </button>
-                        <button className='btn btn-xs btn-error text-white'>
+                        <button
+                          onClick={() => handleDeleteBook(item?.objectId)}
+                          className='btn btn-xs btn-error text-white'
+                        >
                           Delete
                         </button>
                       </div>
