@@ -1,41 +1,13 @@
 import { IoArrowBack } from 'react-icons/io5';
-import { useForm } from 'react-hook-form';
-import {
-  createBookSchema,
-  type CreateBookRequest,
-} from '../../../../features/books-management/create/validations/createBookSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import axios, { isAxiosError } from 'axios';
-import { toast } from 'react-toastify';
+import { useCreateBook } from '../../../../features/create-book/hooks/useCreateBook';
 export default function CreateBook() {
   const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset
-  } = useForm<CreateBookRequest>({
-    resolver: zodResolver(createBookSchema),
-  });
-
-  const handleCreateBook = async ({
-    title,
-    isbn,
-    author,
-    imageUrl,
-  }: CreateBookRequest) => {
-    try {
-      await axios.post(
-        'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/data/Books',
-        { title, isbn, author, imageUrl },
-      );
-      reset();
-      toast.success('Create new book successful');
-    } catch (error) {
-      if (isAxiosError(error)) {
-        toast.error(error?.response?.data?.message);
-      }
-    }
-  };
+    handleSubmit, 
+    handleCreateBook, 
+    register, 
+    isSubmitting, 
+    errors
+  } = useCreateBook(); 
 
   return (
     <>

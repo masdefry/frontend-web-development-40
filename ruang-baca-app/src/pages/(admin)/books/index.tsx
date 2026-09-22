@@ -1,32 +1,8 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { IoAddOutline } from 'react-icons/io5';
 import { MdOutlineLibraryBooks } from 'react-icons/md';
-
-interface Books {
-  title: string;
-  isbn: string;
-  author: string;
-  updated: Date;
-  deleted: Date;
-}
+import { useGetBooks } from '../../../features/books-management/hooks/useGetBooks';
 export default function BooksManagementPage() {
-  const [books, setBooks] = useState<Books[]>([]);
-
-  useEffect(() => {
-    const getBooks = async () => {
-      try {
-        const res = await axios.get(
-          'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/data/Books',
-        );
-        setBooks(res?.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getBooks();
-  }, []);
+  const { books } = useGetBooks();
 
   return (
     <>
@@ -73,7 +49,14 @@ export default function BooksManagementPage() {
                     <td>{item?.title}</td>
                     <td>{item?.author}</td>
                     <td>
-                      <button>Update</button>
+                      <div className='flex gap-3'>
+                        <button className='btn btn-xs btn-success text-white'>
+                          Update
+                        </button>
+                        <button className='btn btn-xs btn-error text-white'>
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
