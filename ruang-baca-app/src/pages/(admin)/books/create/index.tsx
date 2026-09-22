@@ -11,7 +11,8 @@ export default function CreateBook() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    reset
   } = useForm<CreateBookRequest>({
     resolver: zodResolver(createBookSchema),
   });
@@ -23,17 +24,11 @@ export default function CreateBook() {
     imageUrl,
   }: CreateBookRequest) => {
     try {
-      console.log({
-        title,
-        isbn,
-        author,
-        imageUrl,
-      });
       await axios.post(
         'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/data/Books',
         { title, isbn, author, imageUrl },
       );
-
+      reset();
       toast.success('Create new book successful');
     } catch (error) {
       if (isAxiosError(error)) {
@@ -122,7 +117,7 @@ export default function CreateBook() {
               <p className='label'>{errors?.imageUrl?.message}</p>
             </fieldset>
             <div className='flex justify-end mt-5'></div>
-            <button type='submit' className='btn btn-primary'>
+            <button disabled={isSubmitting} type='submit' className='btn btn-primary'>
               Save as New Book
             </button>
           </form>
@@ -135,3 +130,4 @@ export default function CreateBook() {
 // 1. Layouting
 // 2. Setup useForm (includes setup register input)
 // 3. Create validation schema at features/resources/validation/...Schema.ts
+// Title doesnt have default value
