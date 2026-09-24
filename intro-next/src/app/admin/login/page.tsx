@@ -9,7 +9,8 @@ export default function Page() {
           <span className='text-gray-500 text-sm'>
             Please enter your credentials to access admin dashboard
           </span>
-          <FormLogin />
+          <FormLogin 
+          />
         </div>
       </div>
     </>
