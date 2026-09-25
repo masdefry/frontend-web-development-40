@@ -1,9 +1,10 @@
 'use client'; 
 import { HiMenuAlt1 } from 'react-icons/hi';
-import { useUsernameStore } from '@/stores/useUsernameStore';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 export default function Navbar() {
-  const { username } = useUsernameStore();
+  const {username, email} = useAuthStore(); 
+  // const auth = JSON.parse(localStorage.getItem('auth')!); 
   return (
     <nav className='navbar w-full bg-base-300'>
       <label
@@ -16,7 +17,7 @@ export default function Navbar() {
       </label>
       <div className='px-4 ml-auto'>
         <div className='flex items-center gap-3'>
-          <span className='text-gray-800'>{username}</span>
+          <span className='text-gray-800'>{username} / {email}</span>
           <div className='w-10 h-10 bg-gray-300 rounded-full'></div>
         </div>
       </div>

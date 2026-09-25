@@ -3,19 +3,23 @@ import { toast } from 'react-toastify';
 import { LoginAdminRequest } from '../validations/loginSchema';
 import { loginApi } from '@/api/auth/loginApi';
 import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 export function useLoginMutation(
   getValues: () => LoginAdminRequest,
 ) {
+  const {setAuth} = useAuthStore()
   const router = useRouter(); 
   const { mutate: loginAdminMutation, isPending } = useMutation({
     mutationFn: async () => {
       const { email, password } = getValues();
-      await loginApi({email, password});
+      return await loginApi({email, password});
     },
     onSuccess: (res) => {
+      setAuth(res?.data?.username, res?.data?.email);
+      // localStorage.setItem('auth', JSON.stringify({email: res?.data?.email, username: res?.data?.username})); 
       toast.success('Authentication user successful');
-      router.push('/');
+      router.push('/admin');
     },
     onError: (error) => {
       console.log(error);
