@@ -7,26 +7,22 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
-  const { token } = useAuthStore();
+  const { objectId } = useAuthStore();
+  const { setAuth } = useAuthStore();
 
-  const { data } = useQuery({
+  // Session User (Ketika User Pernah Login)
+  useQuery({
     queryFn: async () => {
-      const res = await axios.get(
-        'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/DFDA6C49-11F9-4C6A-80AC-502464A70582/users/current',
-        {
-          headers: {
-            'user-token': token,
-          },
-        },
+      const res = await axios.post(
+        'https://api.backendless.com/80900C75-16BB-41B9-A507-BFBEB18800DB/961C60EC-92F0-449A-9F6C-16488E55BA91/users/login',
+        { objectId },
       );
-      console.log('>>>');
-      console.log(res);
-      return res?.data
+      setAuth(res?.data?.username, res?.data?.email, res?.data?.objectId);
+      return res?.data;
     },
-    queryKey: ['session-user', token],
-    enabled: !!token,
+    queryKey: ['session-user', objectId],
+    enabled: !!objectId,
   });
-  console.log(data);
 
   return (
     <>
