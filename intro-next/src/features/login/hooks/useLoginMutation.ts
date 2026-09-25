@@ -16,7 +16,7 @@ export function useLoginMutation(
       return await loginApi({email, password});
     },
     onSuccess: (res) => {
-      setAuth(res?.data?.username, res?.data?.email);
+      setAuth(res?.data?.username, res?.data?.email, res?.data?.['user-token']);
       // localStorage.setItem('auth', JSON.stringify({email: res?.data?.email, username: res?.data?.username})); 
       toast.success('Authentication user successful');
       router.push('/admin');
